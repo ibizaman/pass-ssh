@@ -32,5 +32,7 @@ test:
 lint:
 	shellcheck -s bash $(PROG).bash
 
+aur:
+	cd aur && makepkg --printsrcinfo > .SRCINFO
 
-.PHONY: install uninstall lint test
+.PHONY: install uninstall lint aur test
