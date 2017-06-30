@@ -1,0 +1,120 @@
+.TH pass-ssh 1 "June 2017" "pass-ssh"
+
+.SH NAME
+pass ssh - A \fBpass\fP(1) extension that lets you quickly create ssh
+keypairs and output public keys using \fBfzf\fP(1) or \fBrofi\fP(1).
+
+.SH SYNOPSIS
+\fBpass ssh\fP [--help,-h]
+    [--fzf,-f]|[--rofi,-r] [--ssh-dir <s>,-d <s>]
+    [--pass-prefix <s>,-p <s>] [--passphrase-no-symbols,-n] [--passphrase-length <s>,-l <s>]
+    [--ssh-t <s>] [--ssh-b <s>]
+
+.SH DESCRIPTION
+\fBpass-ssh\fP  Provide an interactive solution to create ssh private
+and public keypairs with passphrases stored in \fIpass\fP as well as
+write the public key to stdout. It will show all available ssh keys in
+either \fIfzf\fP or \fIrofi\fP, wait for the user to select one and
+write the public key to stdout.
+        
+The user can select \fIfzf\fP or \fIrofi\fP by giving either \fI--fzf\fP
+or \fI--rofi\fP. By default, \fIrofi\fP will be selected and
+\fBpass-ssh\fP will fallback to \fIfzf\fP.
+
+If the selected key file does not exist under the directory given by
+\fI--ssh-dir\fP, first a passphrase will be generated in \fBpass\fP
+under the prefix given by \fI--pass-prefix\fP. Specific passphrase
+length can be given using \fI--passphrase-length\fP and no symbols can
+be activated with \fI--passphrase-no-symbols\fP. Second, a new private
+and public keypair will be generated with the aforementioned passphrase
+and with \fBssh-keygen\fP's \fI-t\fP and \fI-b\fP option given
+respectively by \fI--ssh-t\fP and \fI--ssh-b\fP. Lastly, the public key
+is written to stdout.
+
+If the selected key exists, the public key is simply written to stdout.
+
+.SH OPTIONS
+
+.TP
+\fB\-f\fB, \-\-fzf\fR
+Use fzf to select pass-name.
+
+.TP
+\fB\-r\fB, \-\-rofi\fR
+Use rofi to select pass-name.
+
+.TP
+\fB\-d\fB, \-\-ssh\-dir\fR
+Directory holding ssh keyfiles, default $HOME/.ssh.
+
+.TP
+\fB\-p\fB, \-\-pass\-prefix\fR
+Prefix under which passphrase are stored in pass, default
+sshkey-passphrase.
+
+.TP
+\fB\-n\fB, \-\-no-symbols\fR
+Do not use any non-alphanumeric characters.
+
+.TP
+\fB\-l <size>\fB, \-\-length=<size>\fR
+Provide a password length.
+
+.TP
+\fB--ssh-t\fB\fR
+ssh-keygen's -t option, the type of key to create.
+
+.TP
+\fB--ssh-b\fB\fR
+ssh-keygen's -b option, the number of bits in the key to create.
+
+.TP
+\fB\-h\fB, \-\-help\fR
+Show usage message.
+
+.SH EXAMPLES
+Combined with a clipboard manager like \fBxclip\fR:
+
+.PP
+.nf
+.RS
+pass ssh | xclip -in -selection clipboard
+.RE
+.fi
+.PP
+
+
+.SH SEE ALSO
+.BR fzf(1),
+.BR pass(1),
+.BR rofi(1),
+.BR ssh-keygen(1),
+.BR xclip(1),
+
+.SH AUTHORS
+.B pass ssh
+was written by
+.MT ibizapeanut@gmail.com
+Pierre PENNINCKX
+.ME .
+
+.SH ACKNOWLEDGMENTS
+Thanks to
+.B roddhjav
+https://github.com/roddhjav for creating
+.BR pass-update(1)
+https://github.com/roddhjav/pass-update from which this script is heavily inspired.
+
+.SH COPYING
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
