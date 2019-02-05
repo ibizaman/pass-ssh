@@ -12,7 +12,6 @@ addons:
     sources:
       - debian-sid
     packages:
-      - shellcheck
       - tree
 
 before_script:
@@ -20,6 +19,7 @@ before_script:
   - tar -xvf password-store-$PASS_VERSION.tar.xz
   - ln -s password-store-$PASS_VERSION/src/password-store.sh pass
   - export PATH="$PATH:$PWD"
+  - cabal install shellcheck
 
 install: true
 
