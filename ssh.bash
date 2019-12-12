@@ -155,7 +155,7 @@ cmd_ssh() {
         echo "Creating passphrase in $pass_prefix/$ssh_key"
         pass generate "$pass_prefix/$ssh_key" $symbols "$length" >/dev/null
 
-        passphrase=$(pass show "$pass_prefix/$ssh_key" | xargs echo -n)
+        passphrase=$(pass show "$pass_prefix/$ssh_key" | xargs -0 echo -n)
         if [ -z "$passphrase" ]; then
             die "Failed to create passphrase."
         fi
@@ -164,7 +164,7 @@ cmd_ssh() {
         ssh-keygen -t "$ssh_type" -b "$ssh_bits" -f "$private_key" -N "$passphrase" </dev/null || exit 1
     fi
 
-    xargs echo -n < "$public_key"
+    xargs -0 echo -n < "$public_key"
 }
 
 [[ "$1" == "help" || "$1" == "--help" || "$1" == "-h" ]] && cmd_ssh_usage
