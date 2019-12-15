@@ -1,9 +1,33 @@
 # pass ssh 0.1 [![build status][build-img]][build-url]
 
-A [pass](https://www.passwordstore.org/) extension that lets you quickly
-create ssh keypairs and output public keys using
-[fzf](https://github.com/junegunn/fzf) or
+A [pass](https://www.passwordstore.org/) extension that creates ssh
+keys with an automatically generated passphrases stored in pass and
+outputs the public key using [fzf](https://github.com/junegunn/fzf) or
 [rofi](https://davedavenport.github.io/rofi/).
+
+
+## Use case
+
+The examples suppose you use the
+[`xclip`](https://github.com/astrand/xclip) clipboard manager:
+
+### Create a new ssh key
+
+Run `pass ssh`, this will show all existing keys under `~/.ssh`.
+Create a new one by entering the name of a key that does not exist,
+for example `mynewkey`. `pass ssh` will then generate a new password
+for it in the password store under `/sshkey-passphrase/mynewkey` and
+use that passphrase as the ssh key's passphrase. Finally, `pass ssh`
+will output the ssh key's public key on stdout.
+
+### Use the new ssh key
+
+Connect to a host using the ssh key, for example `ssh -i
+~/.ssh/mynewkey myhost`. `ssh` will then ask for a passphrase, the one
+stored in the password store at `/sshkey-passphrase/mynewkey`. You can
+then simply copy the passphrase with `pass --clip
+/sshkey-passphrase/mynewkey` and copy paste it to the `ssh` passphrase
+prompt.
 
 
 ## Usage
@@ -15,11 +39,11 @@ pass ssh [--help,-h]
     [--ssh-t <s>] [--ssh-b <s>]
 ```
 
-`pass-ssh` provides an interactive solution to create ssh private
-and public keypairs with passphrases stored in `pass` as well as
-write the public key to stdout. It will show all available ssh keys in
-either `fzf` or `rofi`, wait for the user to select one and
-write the public key to stdout.
+`pass-ssh` provides an interactive solution to create ssh private and
+public keypairs with passphrases stored in `pass` as well as write the
+public key to stdout. It will show all available ssh keys in either
+`fzf` or `rofi`, wait for the user to select one and write the public
+key to stdout.
 
 The user can select `fzf` or `rofi` by giving either `--fzf`
 or `--rofi`. By default, `rofi` will be selected and
@@ -48,14 +72,6 @@ If the selected key exists, the public key is simply written to stdout.
 * `--ssh-t` ssh-keygen's -t option, the type of key to create.
 * `--ssh-b` ssh-keygen's -b option, the number of bits in the key to create.
 * `-h`, `--help` Show usage message.
-
-
-## Examples
-
-Combined with a clipboard manager like [`xclip`](https://github.com/astrand/xclip):
-```
-pass ssh | xclip -in -selection clipboard
-```
 
 
 ## Installation

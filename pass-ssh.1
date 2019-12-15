@@ -1,8 +1,9 @@
 .TH pass-ssh 1 "June 2017" "pass-ssh"
 
 .SH NAME
-pass ssh - A \fBpass\fP(1) extension that lets you quickly create ssh
-keypairs and output public keys using \fBfzf\fP(1) or \fBrofi\fP(1).
+pass ssh - A \fBpass\fP(1) extension that creates ssh keys with an
+automatically generated passphrases stored in pass and outputs the
+public key using \fBfzf\fP(1) or \fBrofi\fP(1).
 
 .SH SYNOPSIS
 \fBpass ssh\fP [--help,-h]
@@ -11,7 +12,7 @@ keypairs and output public keys using \fBfzf\fP(1) or \fBrofi\fP(1).
     [--ssh-t <s>] [--ssh-b <s>]
 
 .SH DESCRIPTION
-\fBpass-ssh\fP  Provide an interactive solution to create ssh private
+\fBpass-ssh\fP  Provides an interactive solution to create ssh private
 and public keypairs with passphrases stored in \fIpass\fP as well as
 write the public key to stdout. It will show all available ssh keys in
 either \fIfzf\fP or \fIrofi\fP, wait for the user to select one and
