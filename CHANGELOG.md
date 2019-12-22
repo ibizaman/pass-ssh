@@ -1,3 +1,7 @@
+# 0.2
+
+* Fix issue when password included quotes.
+
 # 0.1
 
 * Choose between rofi and fzf.

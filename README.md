@@ -106,6 +106,12 @@ create an alias in `.bashrc`: `alias pass='PASSWORD_STORE_ENABLE_EXTENSIONS=true
 Feedback, contributors, pull requests are all very welcome.
 
 
+### Bump version
+
+Update changelog and go to `aur/` and update `pkgver`. Then add a git
+tag. Finally, run `make aur` and git push the `aur` submodule.
+
+
 ## Acknowledgments
 
 Thanks to [roddhjav](https://github.com/roddhjav) for creating
