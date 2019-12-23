@@ -1,4 +1,4 @@
-# pass ssh 0.1 [![build status][build-img]][build-url]
+# pass ssh 0.2 [![build status][build-img]][build-url]
 
 A [pass](https://www.passwordstore.org/) extension that creates ssh
 keys with an automatically generated passphrases stored in pass and
