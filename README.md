@@ -109,7 +109,7 @@ Feedback, contributors, pull requests are all very welcome.
 ### Bump version
 
 Update changelog and go to `aur/` and update `pkgver`. Then add a git
-tag. Finally, run `make aur` and git push the `aur` submodule.
+tag. Finally, run `make aur` and `make aur-push`.
 
 
 ## Acknowledgments
