@@ -144,7 +144,7 @@ cmd_ssh() {
         die 'No ssh key selected.'
     fi
 
-    local private_key="$HOME/.ssh/$ssh_key"
+    local private_key="$ssh_dir/$ssh_key"
     local public_key="$private_key.pub"
 
     if ! [ -f "$public_key"  ]; then
